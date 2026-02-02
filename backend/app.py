@@ -24,6 +24,7 @@ def add_issue():
     issue = {
         "description": data.get("description"),
         "location": data.get("location"),
+        "image": data.get("image"),
         "status": "Pending",
         "priority": priority
     }
