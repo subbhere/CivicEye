@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CivicEye – Report Issue</title>
+</head>
+<body>
+  <h2>Report Civic Issue</h2>
+
+  <input type="text" id="desc" placeholder="Issue description" /><br><br>
+  <input type="text" id="loc" placeholder="Location" /><br><br>
+
+  <button onclick="submitIssue()">Submit Issue</button>
+
+  <p id="msg"></p>
+
+  <script>
+    function submitIssue() {
+      fetch("http://127.0.0.1:5000/add-issue", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          description: document.getElementById("desc").value,
+          location: document.getElementById("loc").value
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("msg").innerText = data.message;
+      });
+    }
+  </script>
+</body>
+</html>
